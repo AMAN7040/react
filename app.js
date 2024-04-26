@@ -1,24 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import logo from './logo.png'
-
-const Header = () => {
-  return (
-    <div className='header'>
-     <div className='logo-container'>
-      <img className="logo" src={logo} alt='Logo Img'/>
-     </div>
-     <div className='nav-items'>
-       <ul>
-        <li>HOME</li>
-        <li>ABOUT US</li>
-        <li>Contact US</li>
-        <li>Cart</li>
-       </ul>
-     </div>
-    </div>
-  )
-}
+import icon from './icon.png'
+import './index.css'
 
 const resList = [
   {
@@ -975,42 +959,86 @@ const resList = [
   }
 ]
 
-const RestaurantCard = ({resData}) => {
-  const {name, cloudinaryImageId, avgRating, deliveryTime , costForTwo, cuisines} = resData?.info;
+
+
+
+
+const Header = () =>{
   return(
-    <div className='res-card'>
-      <div className='card-img'>
-        <img className='resImg' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId} alt="Card Image"/>
+    <div className='header'>
+      <div className='logo-container'>
+        <img className="logo" src={logo} alt='Logo Img'/>
       </div>
-      <h3>{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating}</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{deliveryTime}</h4>
-    </div>
-  )
-}
-const Body = () => {
-  return (
-    <div className='body'>
-      <div className='search'>search</div>
-      <div className='res-container'>
-        {/* Restaurant Card */}
-       {
-        resList.map((restaurant)=> (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
-      ))}
+      <div className='nav-items'>
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>🛒</li>
+        </ul>
       </div>
     </div>
   )
 }
 
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header/>
-      <Body/>
+const RestaurentCard = ({resData}) => {
+  const {name, cloudinaryImageId, avgRating, deliveryTime , costForTwo, cuisines} = resData?.info;
+  return(
+    <div className='res-card'>
+      <div className='cardImg'>
+         <img className='Img' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId} alt='Card Image'/>
+      </div>
+      <h3>{name}</h3>
+      <h4>{cuisines.join(', ')}</h4>
+      <h4>{costForTwo}</h4>
+      <h4>{avgRating}</h4>
+      <h4>{deliveryTime} Minutes</h4>
     </div>
+  )
+}
+
+const Body = () => {
+  return(
+    <div className='body'>
+      <div className='body-func'>
+         <button className='button'>Filter</button>
+         <button className='button'>Search</button>
+         <button className='button'>Sort</button>
+      </div>
+      <div className='res-container'>
+        {resList.map((restaurant)=> (
+          <RestaurentCard key={restaurant.info.id} resData={restaurant}/>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const Footer = () => {
+  const year = new Date().getFullYear();
+  return (
+    <div className="footer">
+      Created By
+      <i class="fa-solid fa-heart"></i>
+      <a href="https://www.linkedin.com/in/amansingh/" target="_blank">
+        Aman Singh
+      </a>
+      <i class="fa-solid fa-copyright"></i>
+      {year}
+      <strong>
+        Food<span>Fire</span>
+      </strong>
+    </div>
+  );
+};
+
+const AppLayout = () => {
+  return(
+    <>
+     <Header/>
+     <Body/>
+     <Footer/>
+    </>
   )
 }
 
