@@ -40,8 +40,9 @@
 
 .body-func > button{
     border-radius: 10px;
-    height: 30px;
-    width:60px;
+    height: 50px;
+    width:90px;
+    cursor: pointer;
 }
 
 button:hover{
