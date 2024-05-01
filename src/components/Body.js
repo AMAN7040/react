@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import RestaurentCard from "./RestaurentCard";
+import Shimmer from "./Shimmer";
 
 
 
@@ -12,6 +13,7 @@ const Body = () => {
 
   const [restaurantList, setRestaurantList] = useState([]);
   const [searchText,setSearchText] = useState('');
+  const [filteredRestaurant, setFilteredRestautant] = useState([]);
 
   useEffect(()=> {
     fetchData();
@@ -21,34 +23,36 @@ const Body = () => {
     const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
     const json = await data.json();
     //optional chaining
+    setFilteredRestautant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     setRestaurantList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-  }
- 
-    return(
+  };
+
+    return restaurantList.length === 0? <Shimmer/> : (
       <div className='body'>
         <div className='body-func'>
            <button className='button'
               onClick={()=>{
-                 filteredresList = resList.filter((res) => res.info.avgRating > 4 );
-                 setRestaurantList(filteredresList);
+                 filteredresList = restaurantList.filter((res) => res.info.avgRating > 4.5);
+                 setFilteredRestautant(filteredresList);
              }}
              >Top Rated Restaurents</button>
-           <input type="text" 
-            placeholder="Search a Restaurant"
-            value={searchText} 
-            className="search"
-            onChange={(e)=> setSearchText(e.target.value)}
-           />
-           <button className='button' 
+        
+            <input type="text"
+             placeholder="search any Restaurant"
+             value={searchText}
+             className="search"
+             onChange={(e)=>{setSearchText(e.target.value)}}
+            />
+          <button className='button' 
              onClick={()=> 
               {const data = getRestaurant(searchText, restaurantList);
-              setRestaurantList(data);
+              setFilteredRestautant(data);
              }}
             >Search</button>
            <button className='button'>Sort</button>
         </div>
         <div className='res-container'>
-          {restaurantList.map((restaurant)=> (
+          {filteredRestaurant.map((restaurant)=> (
             <RestaurentCard key={restaurant.info.id} resData={restaurant}/>
           ))}
         </div>
