@@ -3,7 +3,6 @@ import RestaurentCard from "./RestaurentCard";
 import Shimmer from "./Shimmer";
 
 
-
 const getRestaurant = (searchText, restaurantList) =>
   restaurantList.filter((res) =>
     res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
@@ -12,52 +11,71 @@ const getRestaurant = (searchText, restaurantList) =>
 const Body = () => {
 
   const [restaurantList, setRestaurantList] = useState([]);
-  const [searchText,setSearchText] = useState('');
-  const [filteredRestaurant, setFilteredRestautant] = useState([]);
+  const [searchText, setSearchText] = useState('');
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
-  useEffect(()=> {
+  useEffect(()=>{
     fetchData();
   },[]);
 
-   const fetchData = async() => {
-    const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
-    const json = await data.json();
-    //optional chaining
-    setFilteredRestautant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    setRestaurantList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+ 
+  
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        'https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING'
+      );
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+  
+      const data = await response.json();
+  
+      setRestaurantList(
+        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      );
+      setFilteredRestaurant(
+        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      );
+    } catch (error) {
+      console.error('Error fetching data:', error);
+  
+    }
   };
+  
 
-    return restaurantList.length === 0? <Shimmer/> : (
-      <div className='body'>
-        <div className='body-func'>
-           <button className='button'
-              onClick={()=>{
-                 filteredresList = restaurantList.filter((res) => res.info.avgRating > 4.5);
-                 setFilteredRestautant(filteredresList);
-             }}
-             >Top Rated Restaurents</button>
-        
-            <input type="text"
-             placeholder="search any Restaurant"
-             value={searchText}
-             className="search"
-             onChange={(e)=>{setSearchText(e.target.value)}}
-            />
-          <button className='button' 
-             onClick={()=> 
-              {const data = getRestaurant(searchText, restaurantList);
-              setFilteredRestautant(data);
-             }}
-            >Search</button>
-           <button className='button'>Sort</button>
-        </div>
-        <div className='res-container'>
-          {filteredRestaurant.map((restaurant)=> (
-            <RestaurentCard key={restaurant.info.id} resData={restaurant}/>
-          ))}
-        </div>
-      </div>
-    )
-  }
+  
+
+  return restaurantList.length===0? <Shimmer/> : (
+    <div className="body">
+     <div className="bodyFunc">
+       <button
+        onClick={()=>{
+          const toprestaurants = restaurantList.filter((restaurant)=> restaurant.info.avgRating >4.5);
+          setFilteredRestaurant(toprestaurants)
+        }}>Ratings 4.5+</button>
+       <input
+         type='text'
+         placeholder="Search Restaurant"
+         value={searchText}
+         onChange={(e)=>{setSearchText(e.target.value)}}
+         />
+       <button
+        onClick={()=>{
+          const searchRestaurant = getRestaurant(searchText, restaurantList);
+          setFilteredRestaurant(searchRestaurant);
+        }}>Search</button>
+       <button>Filter</button>
+       <button>Sort By</button>
+     </div>
+     <div className="restaurant-container">
+     {filteredRestaurant.map((restaurant)=> (
+       <RestaurentCard key={restaurant.info.id} resData={restaurant}/>         
+     ))}
+     </div>
+    </div>
+  )
+}
 
 export default Body;

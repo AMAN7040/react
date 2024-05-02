@@ -6,12 +6,13 @@ import Footer from './components/footer'
 import '../index.css'
 
 
+
 const AppLayout = () => {
   return(
     <>
-     <Header/>
-     <Body/>
-     <Footer/>
+      <Header/>
+      <Body/>
+      <Footer/>
     </>
   )
 }
