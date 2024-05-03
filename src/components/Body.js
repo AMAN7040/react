@@ -13,17 +13,34 @@ const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loading ,setLoading] = useState(true)
+
+const handleInfiniteScroll = async() =>{
+  try{
+    if(window.innerHeight + document.documentElement.scrollTop + 1 >=  document.documentElement.scrollHeight){
+      setLoading(true); 
+      setPage((prev)=> prev + 1);
+    }
+  }catch(error){
+    console.log(error)
+  }
+}
 
   useEffect(()=>{
     fetchData();
-  },[]);
+  },[page]);
 
- 
+ useEffect(()=>{
+  window.addEventListener("scroll", handleInfiniteScroll);
+
+  return ()=> window.removeEventListener('scroll', handleInfiniteScroll)
+ },[])
   
   const fetchData = async () => {
     try {
       const response = await fetch(
-        'https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING'
+        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.853532&lng=77.663033&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING?_page=${page}`
       );
   
       if (!response.ok) {
@@ -31,22 +48,15 @@ const Body = () => {
       }
   
       const data = await response.json();
-  
-      setRestaurantList(
-        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-      );
-      setFilteredRestaurant(
-        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-      );
+      setRestaurantList((prev)=> [...prev, ...data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
+      setFilteredRestaurant((prev)=> [...prev, ...data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
-  
+    
     }
   };
   
-
-  
-
   return restaurantList.length===0? <Shimmer/> : (
     <div className="body">
      <div className="bodyFunc">
@@ -71,8 +81,10 @@ const Body = () => {
      </div>
      <div className="restaurant-container">
      {filteredRestaurant.map((restaurant)=> (
-       <RestaurentCard key={restaurant.info.id} resData={restaurant}/>         
+       <RestaurentCard key={restaurant.info.id} resData={restaurant}/> 
+          
      ))}
+      {loading && <Shimmer/>}
      </div>
     </div>
   )

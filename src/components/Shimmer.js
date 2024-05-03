@@ -50,60 +50,60 @@ const Shimmer = () =>{
 //   )
 
  return(
-    <div class="shimmer-container">
-     <div class="shimmer-card">
-       <div class="shimmer-header"></div>
-       <div class="shimmer-img"></div>
-       <div class="shimmer-body"></div>
-       <div class="shimmer-footer"></div>
+    <div className="shimmer-container">
+     <div className="shimmer-card">
+       <div className="shimmer-header"></div>
+       <div className="shimmer-img"></div>
+       <div className="shimmer-body"></div>
+       <div className="shimmer-footer"></div>
      </div>
-     <div class="shimmer-card">
-       <div class="shimmer-header"></div>
-       <div class="shimmer-img"></div>
-       <div class="shimmer-body"></div>
-       <div class="shimmer-footer"></div>
+     <div className="shimmer-card">
+       <div className="shimmer-header"></div>
+       <div className="shimmer-img"></div>
+       <div className="shimmer-body"></div>
+       <div className="shimmer-footer"></div>
      </div>
-     <div class="shimmer-card">
-       <div class="shimmer-header"></div>
-       <div class="shimmer-img"></div>
-       <div class="shimmer-body"></div>
-       <div class="shimmer-footer"></div>
+     <div className="shimmer-card">
+       <div className="shimmer-header"></div>
+       <div className="shimmer-img"></div>
+       <div className="shimmer-body"></div>
+       <div className="shimmer-footer"></div>
      </div>
-     <div class="shimmer-card">
-       <div class="shimmer-header"></div>
-       <div class="shimmer-img"></div>
-       <div class="shimmer-body"></div>
-       <div class="shimmer-footer"></div>
+     <div className="shimmer-card">
+       <div className="shimmer-header"></div>
+       <div className="shimmer-img"></div>
+       <div className="shimmer-body"></div>
+       <div className="shimmer-footer"></div>
      </div>
-     <div class="shimmer-card">
-       <div class="shimmer-header"></div>
-       <div class="shimmer-img"></div>
-       <div class="shimmer-body"></div>
-       <div class="shimmer-footer"></div>
+     <div className="shimmer-card">
+       <div className="shimmer-header"></div>
+       <div className="shimmer-img"></div>
+       <div className="shimmer-body"></div>
+       <div className="shimmer-footer"></div>
      </div>
-     <div class="shimmer-card">
-       <div class="shimmer-header"></div>
-       <div class="shimmer-img"></div>
-       <div class="shimmer-body"></div>
-       <div class="shimmer-footer"></div>
+     <div className="shimmer-card">
+       <div className="shimmer-header"></div>
+       <div className="shimmer-img"></div>
+       <div className="shimmer-body"></div>
+       <div className="shimmer-footer"></div>
      </div>
-     <div class="shimmer-card">
-       <div class="shimmer-header"></div>
-       <div class="shimmer-img"></div>
-       <div class="shimmer-body"></div>
-       <div class="shimmer-footer"></div>
+     <div className="shimmer-card">
+       <div className="shimmer-header"></div>
+       <div className="shimmer-img"></div>
+       <div className="shimmer-body"></div>
+       <div className="shimmer-footer"></div>
      </div>
-     <div class="shimmer-card">
-       <div class="shimmer-header"></div>
-       <div class="shimmer-img"></div>
-       <div class="shimmer-body"></div>
-       <div class="shimmer-footer"></div>
+     <div className="shimmer-card">
+       <div className="shimmer-header"></div>
+       <div className="shimmer-img"></div>
+       <div className="shimmer-body"></div>
+       <div className="shimmer-footer"></div>
      </div>
-     <div class="shimmer-card">
-       <div class="shimmer-header"></div>
-       <div class="shimmer-img"></div>
-       <div class="shimmer-body"></div>
-       <div class="shimmer-footer"></div>
+     <div className="shimmer-card">
+       <div className="shimmer-header"></div>
+       <div className="shimmer-img"></div>
+       <div className="shimmer-body"></div>
+       <div className="shimmer-footer"></div>
      </div>
      
   </div>
