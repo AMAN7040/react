@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../Images/Logo.png'
 const Header = () =>{
   
   const [isloogedIn, setLoggedIn] = useState('Logout')
+
+  useEffect(()=>{
+    
+  },[])
 
   return (
     <div className='header'>
