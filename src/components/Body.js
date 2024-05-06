@@ -40,7 +40,7 @@ const handleInfiniteScroll = async() =>{
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.853532&lng=77.663033&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING?_page=${page}`
+        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9939369&lng=77.5980282&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING?_page=${page}`
       );
   
       if (!response.ok) {

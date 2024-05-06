@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import logo from '../Images/Logo.png'
+import { Link } from 'react-router-dom';
 const Header = () =>{
   
   const [isloogedIn, setLoggedIn] = useState('Logout')
 
-  useEffect(()=>{
-    
-  },[])
 
   return (
     <div className='header'>
@@ -14,9 +12,15 @@ const Header = () =>{
        <img className='logo' src={logo} alt='Logo img'/>
      </div>
      <div className='nav-items'>
-      <div className='item'>Home</div>
-      <div className='item'>Help</div>
-      <div className='item'>Contact Us</div>
+      <div className='item'>
+        <Link to='/'>Home</Link>
+      </div>
+      <div className='item'>
+         <Link to='/about'>About Us</Link>
+      </div>
+      <div className='item'>
+      <Link to='/contact'>Contact Us</Link>
+      </div>
       <div className='item'>Cart</div>
       <button className='loginbtn'
        onClick={()=> setLoggedIn(isloogedIn==='Logout'? 'Login' : 'Logout')}
