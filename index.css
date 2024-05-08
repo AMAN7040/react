@@ -277,3 +277,46 @@
     color: inherit; /* Inherit color from parent */
   }
   
+.login-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;;
+}
+
+.login-form{
+    margin: 20px;
+    padding: 20px;
+    
+}
+
+.email,
+.password{
+    height: 40px;
+    width: 400px;
+    margin: 30px;
+    padding: 5px;
+    border-radius: 10px;
+
+}
+
+.submit{
+  height: 40px;
+  width: 70px;
+  background-color: rgb(43, 138, 239);
+  border-radius: 10px;
+  margin-left: 200px;
+  margin-top: 20px;
+}
+
+.input-error{
+    border-color: red;
+}
+
+.error{
+    color: rgb(250, 0, 0);
+    font-size: medium;
+    font-weight: 600;
+    margin-left: 50px;
+}
