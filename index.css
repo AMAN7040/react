@@ -271,3 +271,9 @@
 .resItem:hover{
     background-color: #f0f0f0;
 }
+
+.itemLink {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+  }
+  

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Shimmer from './Shimmer';
-import { MENU_ITEM_TYPE_KEY } from '../Utils/constants';
+import { MENU_API, MENU_ITEM_TYPE_KEY } from '../Utils/constants';
 import Category from './Category';
 import { useParams } from 'react-router-dom';
 
 const RestaurantMenu = () => {
-  const [resName, setResName] = useState(null)
+  const [resName, setResName] = useState(null);
+
+  const {resId} = useParams();
 
     useEffect(()=> {
       fetchMenu();
@@ -13,14 +15,13 @@ const RestaurantMenu = () => {
    
     const fetchMenu = async() =>{
        try{
-        const response = await fetch('https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=302687&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER');
+        const response = await 
+          fetch(MENU_API + resId);
         
         if (!response.ok) {
          throw new Error('Failed to fetch data');
        }
        const resData = await response.json();
-       
-       console.log('data ', resData);
        setResName(resData?.data)
        
       }catch(error){
@@ -36,7 +37,7 @@ const RestaurantMenu = () => {
     
     const menuContent = resName?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.
                           filter(x => x.card?.card?.['@type'] === MENU_ITEM_TYPE_KEY)
-    console.log(menuContent)
+    
 
     return(
      <div className='menu'>
@@ -51,7 +52,7 @@ const RestaurantMenu = () => {
       </div>
       
        {menuContent.map((x)=>(
-        <Category key={x.card?.card?.itemCards?.card?.info?.category} categoryData={x}/>
+        <Category key={x.card?.card?.itemCards?.card?.info?.uniqueId} categoryData={x}/>
        ))}
      </div>
    );

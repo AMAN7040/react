@@ -13,13 +13,13 @@ const Header = () =>{
      </div>
      <div className='nav-items'>
       <div className='item'>
-        <Link to='/'>Home</Link>
+        <Link className='itemLink' to='/'>Home</Link>
       </div>
       <div className='item'>
-         <Link to='/about'>About Us</Link>
+         <Link className='itemLink' to='/about'>About Us</Link>
       </div>
       <div className='item'>
-      <Link to='/contact'>Contact Us</Link>
+      <Link className='itemLink' to='/contact'>Contact Us</Link>
       </div>
       <div className='item'>Cart</div>
       <button className='loginbtn'

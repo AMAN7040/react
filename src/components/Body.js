@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurentCard from "./RestaurentCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 
 const getRestaurant = (searchText, restaurantList) =>
@@ -81,7 +82,9 @@ const handleInfiniteScroll = async() =>{
      </div>
      <div className="restaurant-container">
      {filteredRestaurant.map((restaurant)=> (
-       <RestaurentCard key={restaurant.info.id} resData={restaurant}/> 
+       <Link className='itemLink' key={restaurant.info.name} to={'/restaurant/'+restaurant.info.id}>
+         <RestaurentCard  resData={restaurant}/>
+       </Link> 
           
      ))}
       {loading && <Shimmer/>}
