@@ -177,3 +177,97 @@
     border: 1px solid black;
 }
 
+.menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    
+}
+.resName{
+    font-size: 25px;
+    margin-left: -500px;
+
+}
+.menuRes{
+    margin: 30px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 700px;
+    font-size: 23px;
+    box-shadow: 10px 15px 0px 10px #f0f0f0, -10px 15px 0 10px #f0f0f0, 0 15px 0 10px #f0f0f0;
+    
+}
+
+.menuItem{
+    margin: 10px;
+    overflow: hidden;
+}
+
+.category{
+    margin: 20px;
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.collapsed .arrow {
+    transform: rotateX(180deg); /* Rotate arrow when collapsed */
+}
+
+.menuItems {
+    padding: 10px;
+    transition: height 0.3s ease; /* Smooth transition for height change */
+    height: auto; /* Ensure content is initially visible */
+}
+
+.collapsed .menuItems {
+    height: 0; /* Collapse content when collapsed */
+    padding: 0; /* Remove padding when collapsed */
+    overflow: hidden; /* Hide content overflow when collapsed */
+}
+  
+
+.itemContent{
+    padding: 3px;
+}
+
+.content{
+    padding: 2px;  
+}
+
+.itemImg{
+    height: 120px;
+    width: 150px;
+    border-radius: 10px;
+}
+
+.itemImgcontainer{
+    height: 120px;
+    width: 150px;
+    border-radius: 10px;
+}
+
+.resItem{
+    display: flex;
+    justify-content: space-between;
+    height:200px;
+    width: 750px;
+    font-weight: lighter;
+    padding: 4px;
+    margin: 15px;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.resItem:hover{
+    background-color: #f0f0f0;
+}
