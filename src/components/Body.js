@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import RestaurentCard from "./RestaurentCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useResdata from "../Utils/useResdata";
+import useInfiniteScroll from "../Utils/useInfiniteScroll";
 
 
 const getRestaurant = (searchText, restaurantList) =>
@@ -11,52 +13,14 @@ const getRestaurant = (searchText, restaurantList) =>
 
 const Body = () => {
 
-  const [restaurantList, setRestaurantList] = useState([]);
+
   const [searchText, setSearchText] = useState('');
-  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [page, setPage] = useState(1);
-  const [loading ,setLoading] = useState(true)
 
-const handleInfiniteScroll = async() =>{
-  try{
-    if(window.innerHeight + document.documentElement.scrollTop + 1 >=  document.documentElement.scrollHeight){
-      setLoading(true); 
-      setPage((prev)=> prev + 1);
-    }
-  }catch(error){
-    console.log(error)
-  }
-}
-
-  useEffect(()=>{
-    fetchData();
-  },[page]);
-
- useEffect(()=>{
-  window.addEventListener("scroll", handleInfiniteScroll);
-
-  return ()=> window.removeEventListener('scroll', handleInfiniteScroll)
- },[])
+  const {restaurantList, filteredRestaurant, setFilteredRestaurant, loading, setLoading} = useResdata(page)
+  useInfiniteScroll(setLoading,setPage);
   
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9939369&lng=77.5980282&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING?_page=${page}`
-      );
   
-      if (!response.ok) {
-        throw new Error('Failed to fetch data');
-      }
-  
-      const data = await response.json();
-      setRestaurantList((prev)=> [...prev, ...data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
-      setFilteredRestaurant((prev)=> [...prev, ...data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    
-    }
-  };
   
   return restaurantList.length===0? <Shimmer/> : (
     <div className="body">
