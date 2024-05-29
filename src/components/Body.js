@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useResdata from "../Utils/useResdata";
 import useInfiniteScroll from "../Utils/useInfiniteScroll";
+import useOnlineStatus from "../Utils/useOnlineStatus";
 
 
 const getRestaurant = (searchText, restaurantList) =>
@@ -20,8 +21,10 @@ const Body = () => {
   const {restaurantList, filteredRestaurant, setFilteredRestaurant, loading, setLoading} = useResdata(page)
   useInfiniteScroll(setLoading,setPage);
   
-  
-  
+  const onlineStatus = useOnlineStatus();  
+
+  if(onlineStatus===false) return <h1>You're offline!!!! cheack your internet connection</h1> 
+
   return restaurantList.length===0? <Shimmer/> : (
     <div className="body">
      <div className="bodyFunc">
@@ -32,7 +35,7 @@ const Body = () => {
         }}>Ratings 4.5+</button>
        <input
          type='text'
-         placeholder="Search Restaurant"
+         placeholder="     Search Restaurant"
          value={searchText}
          onChange={(e)=>{setSearchText(e.target.value)}}
          />
