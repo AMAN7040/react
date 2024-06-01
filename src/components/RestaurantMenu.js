@@ -20,15 +20,15 @@ const RestaurantMenu = () => {
     
 
     return(
-     <div className='menu'>
-      <div className='resName'> 
+     <div className='flex flex-col items-center m-5'>
+      <div className='text-xl font-bold m-2'> 
        <h3>{name}</h3>
        
       </div>
-      <div className='menuRes'>
-        <h4>{cuisines.join(', ')} - {costForTwoMessage}</h4>
-        <h5>{avgRating}⭐︎({totalRatingsString})</h5>
-        <h5>{sla.minDeliveryTime} - {sla.maxDeliveryTime} mins</h5>
+      <div className='m-2 p-5 h-36 w-[800] border-2 border-gray-200 border-solid rounded-2xl shadow-2xl'>
+        <h4 className='font-semibold p-1'>{cuisines.join(', ')} - {costForTwoMessage}</h4>
+        <h5 className='font-semibold p-1'>{avgRating}⭐︎({totalRatingsString})</h5>
+        <h5 className='font-semibold p-1'>{sla.minDeliveryTime} - {sla.maxDeliveryTime} mins</h5>
       </div>
       
        {menuContent.map((x)=>(

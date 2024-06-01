@@ -9,30 +9,32 @@ const Header = () =>{
  const onlineStatus = useOnlineStatus();
 
   return (
-    <div className='header'>
-     <div className='logo-container'> 
-       <img className='logo' src={logo} alt='Logo img'/>
+    <div className='flex justify-center  items-center'>
+     <div className=' h-20 flex items-center justify-center w-52 mx-10'> 
+       <img className='h-[50] w-26 rounded-md ' src={logo} alt='Logo img'/>
      </div>
-     <div className='nav-items'>
-      <div className='item'>
+     <div className=' flex items-center justify-center h-14 w-full mx-20'>
+      <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'> 
        Online Status: {onlineStatus? '✅': '🔴'}
       </div>
-      <div className='item'>
+      <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'>
         <Link className='itemLink' to='/'>Home</Link>
       </div>
-      <div className='item'>
+      <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'>
          <Link className='itemLink' to='/about'>About Us</Link>
       </div>
-      <div className='item'>
+      <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'>
       <Link className='itemLink' to='/contact'>Contact Us</Link>
       </div>
-      <div className='item'>
+      <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'>
       <Link className='itemLink' to='/grocery'>Grocery</Link>
       </div>
-      <div className='item'>Cart</div>
-      <button className='loginbtn'
+      <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'>Cart</div>
+      <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400 w-[60] p-1'>
+        <button className='cursor-pointer text-lg border-none bg-transparent'
        onClick={()=> setLoggedIn(isloogedIn==='Logout'? 'Login' : 'Logout')}
        >{isloogedIn}</button>
+       </div>
      </div>
     </div>
   )

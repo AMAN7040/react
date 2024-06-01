@@ -26,28 +26,28 @@ const Body = () => {
   if(onlineStatus===false) return <h1>You're offline!!!! cheack your internet connection</h1> 
 
   return restaurantList.length===0? <Shimmer/> : (
-    <div className="body">
-     <div className="bodyFunc">
-       <button
+    <div className="">
+     <div className="flex justify-evenly ">
+       <button className="cursor-pointer text-sm-5 h-10 w-28 rounded-md border-1 border-gray p-2 hover:bg-gray-200 mx-10"
         onClick={()=>{
           const toprestaurants = restaurantList.filter((restaurant)=> restaurant.info.avgRating >4.5);
           setFilteredRestaurant(toprestaurants)
         }}>Ratings 4.5+</button>
-       <input
+       <input className="cursor-pointer text-sm-5 h-10 w-46 rounded-md border-1 border-gray p-2 hover:border-2 border-black"
          type='text'
          placeholder="     Search Restaurant"
          value={searchText}
          onChange={(e)=>{setSearchText(e.target.value)}}
          />
-       <button
+       <button className=" bg-orange-500 cursor-pointer text-sm-5 h-10 w-28 rounded-md border-1 border-gray p-2 hover:bg-gray-200 mx-10"
         onClick={()=>{
           const searchRestaurant = getRestaurant(searchText, restaurantList);
           setFilteredRestaurant(searchRestaurant);
         }}>Search</button>
-       <button>Filter</button>
-       <button>Sort By</button>
+       <button className="cursor-pointer text-sm-5 h-10 w-28 rounded-md border-1 border-gray p-2 hover:bg-gray-200 mx-10">Filter</button>
+       <button className="cursor-pointer text-sm-5 h-10 w-28 rounded-md border-1 border-gray p-2 hover:bg-gray-200 mx-10">Sort By</button>
      </div>
-     <div className="restaurant-container">
+     <div className="flex flex-wrap justify-center">
      {filteredRestaurant.map((restaurant)=> (
        <Link className='itemLink' key={restaurant.info.name} to={'/restaurant/'+restaurant.info.id}>
          <RestaurentCard  resData={restaurant}/>
