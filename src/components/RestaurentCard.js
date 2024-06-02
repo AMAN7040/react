@@ -28,4 +28,15 @@ const RestaurentCard = ({ resData }) => {
   );
 };
 
+//high order components
+export const isOpened = (RestaurentCard) =>{
+  return(props) => {
+    return(
+      <div>
+        <label className="absolute bg-black text-white ml-4 p-1 rounded-lg">OPEN</label>
+        <RestaurentCard {...props}/>
+      </div>
+    )
+  };
+};
 export default RestaurentCard;

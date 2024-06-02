@@ -22,7 +22,6 @@ const useResdata = (page) =>{
              setRestaurantList((prev)=> [...prev, ...data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
              setFilteredRestaurant((prev)=> [...prev, ...data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
              setLoading(false);
-
            }catch(error){
              console.error("Error fetching the data", error);
            }

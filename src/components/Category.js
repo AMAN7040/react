@@ -10,14 +10,14 @@ const Category = ({categoryData}) => {
       };
 
   return (
-    <div className={`m-3 overflow-hidden ${isCollapsed ? 'collapsed' : ''}`}>
-     <div className='flex justify-between items-center m-5 p-3 cursor-pointer bg-gray-50 text-lg ' onClick={toggleCollapse}>
+    <div className='m-3 overflow-hidden'>
+     <div className='flex justify-between items-center m-5 p-3 font-bold cursor-pointer bg-gray-50 text-lg shadow-lg ' onClick={toggleCollapse}>
       <h4>{title} ({itemCards.length})</h4>
       <span className={`transition-transform duration-300 ease-in-out ${isCollapsed ? 'rotate-180' : ''}`}>▼</span>
      </div>
-     <div className={`p-3 transition-h duration-300 ease-in-out ${isCollapsed ? 'h-0 p-0 overflow-hidden' : ''}`}>
+     <div className={`p-0 transition-h duration-300 ease-in-out ${isCollapsed ? 'h-0 p-0 overflow-hidden' : ''}`}>
         {itemCards.map((item) => (
-          <Menuitem key={item.card.info.id} menuData={item} />
+          <Menuitem key={item.card.info.id} menuData={item}/>
         ))}
       </div>
 

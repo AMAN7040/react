@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurentCard from "./RestaurentCard";
+import RestaurentCard, {isOpened} from "./RestaurentCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useResdata from "../Utils/useResdata";
@@ -17,8 +17,10 @@ const Body = () => {
 
   const [searchText, setSearchText] = useState('');
   const [page, setPage] = useState(1);
+  const RestaurentCardOpened = isOpened(RestaurentCard);
 
   const {restaurantList, filteredRestaurant, setFilteredRestaurant, loading, setLoading} = useResdata(page)
+  console.log(restaurantList);
   useInfiniteScroll(setLoading,setPage);
   
   const onlineStatus = useOnlineStatus();  
@@ -50,7 +52,9 @@ const Body = () => {
      <div className="flex flex-wrap justify-center">
      {filteredRestaurant.map((restaurant)=> (
        <Link className='itemLink' key={restaurant.info.name} to={'/restaurant/'+restaurant.info.id}>
-         <RestaurentCard  resData={restaurant}/>
+        {
+          restaurant.info.isOpen? (<RestaurentCardOpened  resData={restaurant}/> ):  (<RestaurentCard  resData={restaurant}/>)
+        }
        </Link> 
           
      ))}
