@@ -15,18 +15,18 @@ import Compo from "./Compo";
 class About extends Component{
   
   constructor(props){
-    console.log('Parent constructor')
+    // console.log('Parent constructor')
     super(props);
 
    
   }
   
   async componentDidMount(){
-    console.log('Parent mounted')
+    // console.log('Parent mounted')
   }
 
   render(){
-    console.log('Parent rendered')
+    // console.log('Parent rendered')
     return( 
       <div className="aboutus">
         <h1>About</h1>

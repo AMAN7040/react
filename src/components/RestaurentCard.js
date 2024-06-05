@@ -11,7 +11,7 @@ const RestaurentCard = ({ resData }) => {
   } = resData?.info;
 
   return (
-    <div className="rounded-lg shadow-md w-120 h-99 p-5 m-6 text-center bg-gray-100 hover:border-2 hover:border-gray-300 hover:scale-110">
+    <div className="rounded-lg shadow-md w-120 h-99 p-5 m-6 text-center bg-gray-100 hover:border-2 hover:border-gray-300">
         <img
           className="h-52 w-80 rounded-lg mx-9"
           src={CDN_URL + cloudinaryImageId}

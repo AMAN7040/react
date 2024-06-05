@@ -1,5 +1,7 @@
 import React from 'react'
 import { MENU_IMG_URL } from '../Utils/constants';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../Utils/cartSlice';
 
 const Menuitem = ({menuData}) => {
     const {
@@ -9,6 +11,13 @@ const Menuitem = ({menuData}) => {
         description,
         defaultPrice
       } = menuData?.card?.info;
+
+      const dispatch = useDispatch();
+
+      const handleAdd = (item) =>{
+          dispatch(addItem(item));
+      }
+
   return (
     <div className='flex justify-between h-60 w-[850] m-5 p-3 gap-4 border-b-2 border-gray font-medium cursor-pointer hover:bg-gray-50'>
         <div className='p-1 w-full'>
@@ -18,7 +27,7 @@ const Menuitem = ({menuData}) => {
         </div>
         <div className='h-36 w-64 rounded-lg'>
            <div className='relative top-5 -left-3.5'>
-            <button className='bg-white shadow-lg m-auto border-2 rounded-lg w-14 border-gray text-green-600'>Add+</button>
+            <button className='bg-white shadow-lg m-auto border-2 rounded-lg w-14 border-gray text-green-600' onClick={()=> handleAdd(menuData)}>Add+</button>
            </div>
             <img className="h-36 w-64 rounded-lg" src={MENU_IMG_URL + imageId} alt='MENU ITEM IMAGE'/>
         </div>

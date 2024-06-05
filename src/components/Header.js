@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import logo from '../Images/Logo.png'
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../Utils/useOnlineStatus';
+import userContext from '../Utils/userContext';
+import { useSelector } from 'react-redux';
 
 const Header = () =>{
   
   const [isloogedIn, setLoggedIn] = useState('Logout')
  const onlineStatus = useOnlineStatus();
+ const {loggedUser} = useContext(userContext)
+ const cart = useSelector((store)=> store.cart.items);
+ 
 
   return (
     <div className='flex justify-center  items-center'>
@@ -29,12 +34,17 @@ const Header = () =>{
       <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'>
       <Link className='itemLink' to='/grocery'>Grocery</Link>
       </div>
-      <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'>Cart</div>
+      <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'>
+       <Link className='itemLink' to='/cart'> Cart-{cart.length }  items</Link>
+      </div>
       <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400 w-[60] p-1'>
         <button className='cursor-pointer text-lg border-none bg-transparent'
        onClick={()=> setLoggedIn(isloogedIn==='Logout'? 'Login' : 'Logout')}
        >{isloogedIn}</button>
        </div>
+       <div className='mx-10 font-normal text-lg cursor-pointer hover:text-orange-400'>
+       {loggedUser}
+      </div>
      </div>
     </div>
   )

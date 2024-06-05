@@ -45,7 +45,7 @@ import React, {Component, useEffect, useState} from 'react'
 
 class Comp extends Component{
     constructor(props){
-      console.log('component constructor');
+      // console.log('component constructor');
       super(props); 
       
       this.state= {
@@ -57,7 +57,7 @@ class Comp extends Component{
     }
    
     async componentDidMount(){
-      console.log('component mounted');
+      // console.log('component mounted');
       const data = await fetch('https://api.github.com/users/AMAN7040');
       const json = await data.json();
 
@@ -76,7 +76,7 @@ class Comp extends Component{
     // }
 
   render(){
-    console.log('component rendered');
+    // console.log('component rendered');
     const {login, followers, avatar_url} = this.state.userInfo;
     return (
             <div className='comp'>

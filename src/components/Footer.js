@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import userContext from "../Utils/userContext";
+
 const Footer = () => {
     const year = new Date().getFullYear();
     return (

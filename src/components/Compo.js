@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 class Compo extends Component{
     constructor(props){
-        console.log('component 2 constructor');
+        // console.log('component 2 constructor');
         super(props);
 
         this.state = {
@@ -24,12 +24,12 @@ class Compo extends Component{
     }
 
     componentDidMount(){
-        console.log("Component 2 mounted")
+        // console.log("Component 2 mounted")
     }
 
 
     render(){
-        console.log('Component 2 rendered')
+        // console.log('Component 2 rendered')
         const{name} = this.props;
         const {count,text} = this.state;
         return(

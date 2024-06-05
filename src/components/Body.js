@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import RestaurentCard, {isOpened} from "./RestaurentCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useResdata from "../Utils/useResdata";
 import useInfiniteScroll from "../Utils/useInfiniteScroll";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import userContext from "../Utils/userContext";
 
 
 const getRestaurant = (searchText, restaurantList) =>
@@ -18,9 +19,9 @@ const Body = () => {
   const [searchText, setSearchText] = useState('');
   const [page, setPage] = useState(1);
   const RestaurentCardOpened = isOpened(RestaurentCard);
+  const {setuserName, loggedUser} = useContext(userContext)
 
   const {restaurantList, filteredRestaurant, setFilteredRestaurant, loading, setLoading} = useResdata(page)
-  console.log(restaurantList);
   useInfiniteScroll(setLoading,setPage);
   
   const onlineStatus = useOnlineStatus();  
@@ -40,6 +41,12 @@ const Body = () => {
          placeholder="     Search Restaurant"
          value={searchText}
          onChange={(e)=>{setSearchText(e.target.value)}}
+         />
+       <input className="cursor-pointer text-sm-5 h-10 w-46 rounded-md border-1 border-gray p-2 border-2 border-black"
+         type='text'
+         placeholder=""
+         value={loggedUser}
+         onChange={(e)=>setuserName(e.target.value)}
          />
        <button className=" bg-orange-500 cursor-pointer text-sm-5 h-10 w-28 rounded-md border-1 border-gray p-2 hover:bg-gray-200 mx-10"
         onClick={()=>{
